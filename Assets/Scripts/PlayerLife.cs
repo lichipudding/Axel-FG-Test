@@ -23,6 +23,8 @@ public class PlayerLife : MonoBehaviour
 
     void EnemyHit()
     {
-        playerBody.velocity = new Vector3(0f, 0f, -onHitPushBack);
+        Vector3 hit = new Vector3(0f, 0f, -onHitPushBack);
+
+        playerBody.AddForce(hit);
     }
 }

@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody body;
     [SerializeField] float movementSpeedAdjustment;
+    public Transform attackPoint;
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
@@ -29,9 +30,6 @@ public class PlayerMovement : MonoBehaviour
         float playerHorizontalInput = Input.GetAxisRaw("Horizontal");
         float playerVerticalInput = Input.GetAxisRaw("Vertical");
 
-        //Get facing direction from input
-        Vector3 faceDirection = new Vector3(playerHorizontalInput, 0f, playerVerticalInput).normalized;
-
         //Get Camera-normalized directional vectors
         Vector3 forward = transform.InverseTransformVector(Camera.main.transform.forward);
         Vector3 right = transform.InverseTransformVector(Camera.main.transform.right);
@@ -39,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
         right.y = 0;
         forward = forward.normalized;
         right = right.normalized;
+
+        //Get facing direction from input
+        Vector3 faceDirection = new Vector3(0f, attackPoint.position.z, 0f);
 
         //Get Direction-relative input vectors
         Vector3 forwardRelativeVerticalInput = playerVerticalInput * forward;
@@ -54,7 +55,17 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
         */
         transform.Translate(cameraRelativeMovement);
+        //HERE ROTATION STUFF
+        //transform.rotation.se
 
         //body.velocity = new Vector3(playerHorizontalInput * movementSpeed, body.velocity.y, playerVerticalInput * movementSpeed);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.DrawLine(transform.position, attackPoint.position);
     }
 }
