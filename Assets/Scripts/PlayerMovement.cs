@@ -10,11 +10,13 @@ public class PlayerMovement : MonoBehaviour
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+    public Transform transformRotation;
 
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody>();
+        transformRotation = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -39,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         right = right.normalized;
 
         //Get facing direction from input
-        Vector3 faceDirection = new Vector3(0f, attackPoint.position.z, 0f);
+        Vector3 faceDirection = transform.InverseTransformVector(Camera.main.transform.forward);
 
         //Get Direction-relative input vectors
         Vector3 forwardRelativeVerticalInput = playerVerticalInput * forward;
@@ -56,9 +58,7 @@ public class PlayerMovement : MonoBehaviour
         */
         transform.Translate(cameraRelativeMovement);
         //HERE ROTATION STUFF
-        //transform.rotation.se
-
-        //body.velocity = new Vector3(playerHorizontalInput * movementSpeed, body.velocity.y, playerVerticalInput * movementSpeed);
+        //transformRotation.transform.rotation = faceDirection.y;
     }
 
     private void OnDrawGizmosSelected()
