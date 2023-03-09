@@ -8,6 +8,7 @@ public class PlayerCombat : MonoBehaviour
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
+    public Light attackFlash; 
 
     public LayerMask enemyLayer;
 
@@ -28,7 +29,9 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider enemy in hitEnemies)
         {
+            attackFlash.intensity = 5f;
             Debug.Log("HIT" + enemy.name);
+            //attackFlash.intensity = 0f;
         }
     }
 
