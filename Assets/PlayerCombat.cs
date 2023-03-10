@@ -8,7 +8,8 @@ public class PlayerCombat : MonoBehaviour
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
-    public Light attackFlash; 
+    public Light attackFlash;
+    private float lightDuration = 20f;
 
     public LayerMask enemyLayer;
 
@@ -19,6 +20,15 @@ public class PlayerCombat : MonoBehaviour
         {
             Attack();
         }
+
+        //not super broken, adjust durations & fix hangup
+        if (attackFlash.intensity >= 0.1f && lightDuration > 0f)
+        {
+            attackFlash.intensity -= 0.1f;
+
+            lightDuration -= 0.1f;
+        }
+
     }
 
     void Attack()
