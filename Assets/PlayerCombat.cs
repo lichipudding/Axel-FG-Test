@@ -9,15 +9,15 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public Light attackFlash;
-    private float waitBetweenAttacks = 1f;
+    private float waitBetweenAttacks = 40f;
 
     public LayerMask enemyLayer;
 
     // Update is called once per frame
     void Update()
     {
-        // 
-        if (Input.GetKeyDown(KeyCode.E) && waitBetweenAttacks >= 1f)
+        //
+        if (Input.GetKeyDown(KeyCode.E) && waitBetweenAttacks >= 40f)
         {
             Attack();
         }
@@ -31,6 +31,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider enemy in hitEnemies)
         {
+            StopCoroutine("LightFade");
             Debug.Log("HIT" + enemy.name);
             StartCoroutine("LightFade");
         }
@@ -42,20 +43,20 @@ public class PlayerCombat : MonoBehaviour
     {
         float lightDuration = 1f;
         float interval = 0.01f;
-        attackFlash.intensity = 5f;
+        attackFlash.intensity = 8f;
+
+        waitBetweenAttacks = 0f;
 
         while (lightDuration >= 0.0f)
         {
-            attackFlash.intensity -= 0.1f;
+            attackFlash.intensity -= 0.15f;
 
             lightDuration -= interval;
 
-            waitBetweenAttacks -= 0.1f;
+            waitBetweenAttacks += 1f;
 
             yield return new WaitForSeconds(interval);
         }
-        
-        waitBetweenAttacks = 1f;
     }
 
     private void OnDrawGizmosSelected()
