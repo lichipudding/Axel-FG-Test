@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    //anim var
-
+    public Transform playerSword;
+    private Quaternion playerSwordRotation;
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public Light attackFlash;
@@ -13,12 +13,17 @@ public class PlayerCombat : MonoBehaviour
 
     public LayerMask enemyLayer;
 
+    private void Start()
+    {
+        playerSword.transform.rotation = playerSwordRotation;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        //
         if (Input.GetKeyDown(KeyCode.E) && waitBetweenAttacks >= 40f)
         {
+            playerSwordRotation.x = 90f;
             Attack();
         }
     }
@@ -32,6 +37,7 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider enemy in hitEnemies)
         {
             StopCoroutine("LightFade");
+            //playerSwordRotation.x = 90f;
             Debug.Log("HIT" + enemy.name);
             StartCoroutine("LightFade");
         }
@@ -57,6 +63,7 @@ public class PlayerCombat : MonoBehaviour
 
             yield return new WaitForSeconds(interval);
         }
+        //playerSwordRotation.x = 0f;
     }
 
     private void OnDrawGizmosSelected()

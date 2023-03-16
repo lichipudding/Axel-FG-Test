@@ -834,7 +834,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 532186855}
-  m_LocalRotation: {x: 0.042606108, y: 0.000000017190755, z: -7.330968e-10, w: 0.999092}
+  m_LocalRotation: {x: 0.042606108, y: -0.000000017190759, z: 7.330969e-10, w: 0.999092}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1007,6 +1007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 787d81400753b694996794634a1c39f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSword: {fileID: 1383800991}
   attackPoint: {fileID: 448632754}
   attackRange: 0.5
   attackFlash: {fileID: 1144750480}
@@ -1176,7 +1177,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814682951}
-  m_LocalRotation: {x: 0.06077205, y: -0.00000001721907, z: 0.0000000010483758, w: 0.9981517}
+  m_LocalRotation: {x: 0.060772028, y: -0.0000000173529, z: 0.0000000010565236, w: 0.9981517}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1262,7 +1263,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.042606115, y: 0.00000003458238, z: -0.00000000147476, w: 0.999092}
+  m_LocalRotation: {x: 0.042606115, y: -0.00000003458238, z: 0.00000000147476, w: 0.999092}
   m_LocalPosition: {x: 0, y: 4, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
