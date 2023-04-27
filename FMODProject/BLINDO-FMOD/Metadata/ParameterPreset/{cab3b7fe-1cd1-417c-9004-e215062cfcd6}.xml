@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{cab3b7fe-1cd1-417c-9004-e215062cfcd6}">
+		<property name="name">
+			<value>LanternState</value>
+		</property>
+		<relationship name="folder">
+			<destination>{5a1da816-188d-4967-bd84-50ebbcd7712e}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{d1c12f7d-7470-484c-b44a-7620221a7b2c}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{d1c12f7d-7470-484c-b44a-7620221a7b2c}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

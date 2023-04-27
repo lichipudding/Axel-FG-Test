@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{de384d04-2664-4075-b9fd-acd14154bc5f}">
+		<property name="name">
+			<value>SneakingState</value>
+		</property>
+		<relationship name="folder">
+			<destination>{5a1da816-188d-4967-bd84-50ebbcd7712e}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{fe1f4483-38ca-45f2-8d68-cb1a93960784}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{fe1f4483-38ca-45f2-8d68-cb1a93960784}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
