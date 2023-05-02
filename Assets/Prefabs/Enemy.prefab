@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 6300658683473152292}
   - component: {fileID: 7953442735081659410}
   - component: {fileID: 8739646256300961649}
+  - component: {fileID: 3131704903551157872}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: EnemyBody
@@ -398,7 +399,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7197498571939592986}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
@@ -482,6 +483,7 @@ MonoBehaviour:
   callGreeting: {fileID: 5886723036162101557}
   callLooming: {fileID: 6300658683473152292}
   callAttacking: {fileID: 8739646256300961649}
+  breathingLoop: {fileID: 3131704903551157872}
 --- !u!114 &5886723036162101557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,6 +604,36 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 1
   OverrideMaxDistance: 10000
+--- !u!114 &3131704903551157872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7197498571939592986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1941901234
+      Data2: 1317609040
+      Data3: 1665742001
+      Data4: 582336402
+    Path: event:/Beasts/Charger-Breath
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 50
 --- !u!1 &7726290358059251784
 GameObject:
   m_ObjectHideFlags: 0

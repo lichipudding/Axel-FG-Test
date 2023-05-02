@@ -44,8 +44,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.70753187, b: 0.25943398, a: 1}
-  m_Intensity: 10
-  m_Range: 1.5
+  m_Intensity: 8
+  m_Range: 2.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51776f5707427a498117fd72c77542e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 5
+  playerHealth: 3
   onHitPushBack: 10
 --- !u!114 &3072366508405419393
 MonoBehaviour:
@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 5922983863202584262}
   m_Layer: 0
   m_Name: Lantern
-  m_TagString: Untagged
+  m_TagString: Lantern
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

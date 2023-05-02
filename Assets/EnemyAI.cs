@@ -37,10 +37,15 @@ public class EnemyAI : MonoBehaviour
     public StudioEventEmitter callGreeting;
     public StudioEventEmitter callLooming;
     public StudioEventEmitter callAttacking;
+    public StudioEventEmitter breathingLoop;
 
     private PlayerMovement playerMovement;
 
     private EnemyDamage enemyDamage;
+
+    private GameObject playerLantern;
+
+    bool shouldBreathe;
 
     private void Awake()
     {
@@ -56,8 +61,14 @@ public class EnemyAI : MonoBehaviour
         enemyNavMeshAgent = GetComponent<NavMeshAgent>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         enemyDamage = GetComponent<EnemyDamage>();
+        playerLantern = GameObject.FindGameObjectWithTag("Lantern");
 
         idlePos = this.transform.position;
+
+        breathingLoop.Play();
+        shouldBreathe = false;
+        playerFound = false;
+        searchingForPlayer = false;
 
         //enemyArm1.transform.rotation = armsRotation;
         //enemyArm2.transform.rotation = armsRotation;
@@ -66,19 +77,31 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (currentState)
+        if (playerLantern.GetComponent<Light>().enabled == true && playerFound == false)
         {
-            case EnemyState.Idle:
-                DoIdle();
-                break;
-            case EnemyState.Pursuit:
-                DoPursuit();
-                break;
-            case EnemyState.Battle:
-                DoBattle();
-                break;
+            DoTrackLight();
         }
+        else
+        {
+            if (searchingForPlayer == true && playerLantern.GetComponent<Light>().enabled == false)
+            {
+                enemyNavMeshAgent.ResetPath();
+                searchingForPlayer = false;
+            }
 
+            switch (currentState)
+            {
+                case EnemyState.Idle:
+                    DoIdle();
+                    break;
+                case EnemyState.Pursuit:
+                    DoPursuit();
+                    break;
+                case EnemyState.Battle:
+                    DoBattle();
+                    break;
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -96,6 +119,15 @@ public class EnemyAI : MonoBehaviour
     void DoIdle ()
     {
         Greeting();
+
+        playerFound = false;
+        searchingForPlayer = false;
+
+        if (shouldBreathe == true)
+        {
+            breathingLoop.Play();
+            shouldBreathe = false;
+        }
 
         bool reachedDestinationCurrentFrame = hasNavMeshAgentReachedDestination();
 
@@ -134,11 +166,19 @@ public class EnemyAI : MonoBehaviour
     void DoPursuit()
     {
         enemyDamage.wasAttacked = false;
+        playerFound = true;
+        searchingForPlayer = false;
 
         if (shouldLoom == true)
         {
             callLooming.Play();
             shouldLoom = false;
+        }
+
+        if (shouldBreathe == false)
+        {
+            breathingLoop.Stop();
+            shouldBreathe = true;
         }
 
         enemyNavMeshAgent.SetDestination(player.position);
@@ -162,6 +202,14 @@ public class EnemyAI : MonoBehaviour
     {
         enemyDamage.wasAttacked = false;
         shouldLoom = false;
+        playerFound = true;
+        searchingForPlayer = false;
+
+        if (shouldBreathe == false)
+        {
+            breathingLoop.Stop();
+            shouldBreathe = true;
+        }
 
         attackTimer -= Time.deltaTime;
 
@@ -178,6 +226,22 @@ public class EnemyAI : MonoBehaviour
 
         if (Vector3.Distance(player.position, this.transform.position) >= battleDistance)
         {
+            currentState = EnemyState.Pursuit;
+        }
+    }
+
+    bool playerFound;
+    bool searchingForPlayer;
+
+    void DoTrackLight()
+    {
+        enemyNavMeshAgent.SetDestination(player.position);
+        searchingForPlayer = true;
+
+        if (Vector3.Distance(player.position, this.transform.position) <= pursuitDistance)
+        {
+            playerFound = true;
+            searchingForPlayer = false;
             currentState = EnemyState.Pursuit;
         }
     }
